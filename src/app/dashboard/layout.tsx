@@ -5,7 +5,7 @@ export default function DashboardLayout({
   children,
 }: {
   children: ReactNode;
-}): JSX.Element {
+}): React.ReactElement {
   return <SidebarLayout>{children}</SidebarLayout>;
 }
 

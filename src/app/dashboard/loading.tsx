@@ -1,4 +1,4 @@
-export default function DashboardLoading(): JSX.Element {
+export default function DashboardLoading(): React.ReactElement {
   return (
     <div className="space-y-6">
       <div className="space-y-2">

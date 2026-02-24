@@ -102,6 +102,8 @@ async function main() {
     try {
       await prisma.activity.create({
         data: {
+          teacherName: record.teacher_name,
+          grade: record.grade,
           teacherId: record.teacher_id,
           activityType: mapActivityType(record.activity_type),
           createdAt: new Date(record.created_at),

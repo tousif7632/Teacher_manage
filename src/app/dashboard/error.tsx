@@ -8,7 +8,7 @@ export default function DashboardError({
 }: {
   error: Error & { digest?: string };
   reset: () => void;
-}): JSX.Element {
+}): React.ReactElement {
   useEffect(() => {
     console.error("Dashboard error:", error);
   }, [error]);
