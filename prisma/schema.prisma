@@ -1,0 +1,43 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum ActivityType {
+  LESSON
+  QUIZ
+  ASSESSMENT
+}
+
+model Teacher {
+  id         String     @id @db.VarChar(64)
+  name       String
+  createdAt  DateTime   @default(now())
+  activities Activity[]
+
+  @@index([name])
+}
+
+model Activity {
+  id           String       @id @default(uuid())
+  teacherId    String       @map("teacher_id")
+  teacherName  String       @map("teacher_name")
+  grade        String
+  subject      String
+  activityType ActivityType @map("activity_type")
+  createdAt    DateTime     @map("created_at")
+  class        String
+  
+  teacher      Teacher      @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+
+  @@unique([teacherId, activityType, createdAt])
+  @@index([activityType, createdAt])
+  @@index([teacherId, createdAt])
+  
+  @@map("activities")
+}
+
